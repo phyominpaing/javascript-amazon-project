@@ -154,3 +154,12 @@
   padding: 8px;
   border-radius: 50px;
 }
+
+.add-to-cart-button:hover {
+  background-color: rgb(6, 125, 98);
+  color: white;
+}
+
+.added-to-cart-visible {
+  opacity: 1;
+}
