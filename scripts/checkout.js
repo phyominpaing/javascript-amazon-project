@@ -6,4 +6,4 @@ import { renderCheckoutHeader } from "./checkout/checkoutHeader.js";
 
 renderCheckoutHeader();
 renderOrderSummary();
-renderPaymentSummary();
+renderPaymentSummary(); 

@@ -43,6 +43,8 @@ products.forEach((product) => {
           </select>
         </div>
 
+        ${product.extraInfoHTML()}        
+
         <div class="product-spacer"></div>
 
         <div class="added-to-cart js-added-to-cart-${product.id}">
@@ -91,4 +93,3 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     }, 2000);
   });
 });
-
