@@ -106,27 +106,55 @@ class Appliance extends Product {
 
 export let products = [];
 
-export function loadProducts(fun) {
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener("load", () => {
-    products = JSON.parse(xhr.response).map((productDetails) => {
-      if (productDetails.type === "clothing") {
-        return new Clothing(productDetails);
-      } else if (productDetails.type === "appliance") {
-        return new Appliance(productDetails);
-      }
-      {
-        return new Product(productDetails);
-      }
+
+export function loadProductsFetch() {
+  const promise = fetch("https://supersimplebackend.dev/products")
+    .then((response) => {
+      return response.json();
+    })
+    .then((productsData) => {
+      products = productsData.map((productDetails) => {
+        if (productDetails.type === "clothing") {
+          return new Clothing(productDetails);
+        } else if (productDetails.type === "appliance") {
+          return new Appliance(productDetails);
+        }
+        {
+          return new Product(productDetails);
+        }
+      });
+    }).catch((error) => {
+      console.log('Unexpacte error. Please try again later.');
     });
 
-    fun();
-  });
-  xhr.open("GET", "https://supersimplebackend.dev/products");
-  xhr.send();
+  return promise;
 }
 
 
+
+// loadProductsFetch().then(() => {
+//   console.log("next step");
+// });
+
+// export function loadProducts(fun) {
+//   const xhr = new XMLHttpRequest();
+//   xhr.addEventListener("load", () => {
+//     products = JSON.parse(xhr.response).map((productDetails) => {
+//       if (productDetails.type === "clothing") {
+//         return new Clothing(productDetails);
+//       } else if (productDetails.type === "appliance") {
+//         return new Appliance(productDetails);
+//       }
+//       {
+//         return new Product(productDetails);
+//       }
+//     });
+
+//     fun();
+//   });
+//   xhr.open("GET", "https://supersimplebackend.dev/products");
+//   xhr.send();
+// }
 
 // export const products = [
 //   {
